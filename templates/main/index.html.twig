@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <div id="main">
+        <div class="inner">
+            {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
+                <h1>Mes annonces suivies</h1>
+                <section>
+                    <div class="box alt">
+                        <div class="row gtr-uniform">
+                            {% for annonce in annonces %}
+                                <div class="col-2"><a href="{{ path('annonces_show', {'id': annonce.id}) }}"><span
+                                                class="image fit"><img
+                                                    src="{{ asset(('annonces/' ~ annonce.Reference|replace({' ': ''})  ~ '.png')) }}"
+                                                    alt=""/></span></a></div>
+                            {% else %}
+                                <div>no records found</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </section>
+                <a href="{{ path('annonces_new') }}">Ajouter une nouvelle annonce</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

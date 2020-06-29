@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MemberController!{% endblock %}
+
+{% block body %}
+    <div id="main">
+        <div class="inner">
+            <h1>Génération d'un rapport</h1>
+            {{ form_start(form) }}
+            <button class="btn">{{ button_label|default('Recherche') }}</button>
+            {{ form_end(form) }}
+            <p>Prix Minimum :</p>
+            {{ prixMin["prix_min"] }}
+            <p>Prix Maximum :</p>
+            {{ prixMax["prix_max"] }}
+            <p>Prix Moyen :</p>
+            {{ prixMoy["prix_moy"] }}
+            <p><a href="{{ path('app_member_graph') }}">Voir graphique de l'évolution générale des prix</a></p>
+        </div>
+    </div>
+{% endblock %}
